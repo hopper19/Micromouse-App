@@ -5,9 +5,11 @@
 #              What included in here is REQUIRED for compatibility with the
 #              app.
 #
+#     IMPORTANT: To move the robot, just change the coordinates.
+#
 #     Author: CUONG NGUYEN
 #
-#     Last Modified: 8/3/2020
+#     Last Modified: 8/4/2020
 # ----------------------------------------------------------------------------
 """
 from MazeMod import ParentMaze
@@ -44,6 +46,10 @@ def sensor_print():
     Maze.sensor_print()
 
 
+# record current position
+x, y = 0, 0
+
+
 def cur_pos():
     """ Return the current position of the mouse """
     return 0, 0
@@ -51,7 +57,9 @@ def cur_pos():
 
 def reset():
     """ Reset the memory before traversing the maze"""
+    global x, y
     Maze.clear_mem()
+    x, y = 0, 0
 
 
 def run_algorithm():

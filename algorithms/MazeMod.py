@@ -7,7 +7,7 @@
 #
 #     Authors: CUONG NGUYEN & Matt-HP
 #
-#     Last Modified: 8/3/2020
+#     Last Modified: 8/4/2020
 # ----------------------------------------------------------------------------
 """
 from CellMod import Cell
@@ -200,23 +200,6 @@ class ParentMaze:
             cls.maze[15][i].set_east_wall(True)
         cls.maze[0][0].set_east_wall(True)
         cls.maze[1][0].set_west_wall(True)
-
-    @classmethod
-    def clear_sensor_maze(cls):
-        """ Reset the mouse's memory of the virtual maze """
-        for i in range(16):
-            for j in range(16):
-                cls.sensor_maze[i][j].set_north_wall(False)
-                cls.sensor_maze[i][j].set_south_wall(False)
-                cls.sensor_maze[i][j].set_west_wall(False)
-                cls.sensor_maze[i][j].set_east_wall(False)
-        for i in range(16):
-            cls.sensor_maze[i][0].set_south_wall(True)
-            cls.sensor_maze[0][i].set_west_wall(True)
-            cls.sensor_maze[i][15].set_north_wall(True)
-            cls.sensor_maze[15][i].set_east_wall(True)
-        cls.sensor_maze[0][0].set_east_wall(True)
-        cls.sensor_maze[1][0].set_west_wall(True)
 
 
 if __name__ == "__main__":

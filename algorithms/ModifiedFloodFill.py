@@ -6,9 +6,11 @@
 #              - Cost less RAM
 #              - Run much faster
 #
+#     IMPORTANT: To move the robot, just change the coordinates.
+#
 #     Author: CUONG NGUYEN
 #
-#     Last Modified: 8/3/2020
+#     Last Modified: 8/4/2020
 # ----------------------------------------------------------------------------
 """
 from MazeMod import ParentMaze

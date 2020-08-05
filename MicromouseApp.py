@@ -5,7 +5,7 @@
 #
 #     Author: CUONG NGUYEN
 #
-#     Last Modified: 8/3/2020
+#     Last Modified: 8/4/2020
 # ----------------------------------------------------------------------------
 """
 from tkinter import Tk, Button, Canvas, Checkbutton, IntVar, StringVar,\
@@ -99,7 +99,7 @@ def start_navigation():
         custom_button.config(state="disabled")
         rollover_custom.config(state="disabled")
         start_button.config(text="Restart Navigation")
-        side_label.config(text="Displaying original canvas maze...")
+    side_label.config(text="Displaying original canvas maze...")
     iteration_count = 0
     while run_algorithm() != "done":
         iteration_count += 1
@@ -107,6 +107,7 @@ def start_navigation():
         # if the algorithm iterates for more than 512 times, declare it's unsolvable
         # due to either the maze is unsolvable or the algorithm failed to solve it
             start_button.config(text="Unsolvable", state="disabled")
+            break
         if number_input.get():
             show_number.config(text="Uncheck for position")
         else:
@@ -319,8 +320,8 @@ def draw_maze(maze):
                 if cell(i, j).checked:
                     canvas.create_text(i*50 + 30, 779 - j*50, text="x",
                         fill=YELLOW, font=("arial", 12, "bold"))
-                    if (i, j) == cur_pos():
-                        canvas.create_image(i*50 + 31, 781 - j*50, image=diamond)
+                if (i, j) == cur_pos():
+                    canvas.create_image(i*50 + 31, 781 - j*50, image=diamond)
     canvas.update()
 
 
