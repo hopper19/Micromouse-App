@@ -15,6 +15,7 @@
 - Write your own algorithms by following the sample script BlankAlgorithm.py and
   the sample algorithms,  ModifiedFloodFill.py. Place your algorithm in the
   "algorithms" folder.
+- Pay attention to the comments in triple quotes.
 - Make your custom maze by clicking the Custom Mode button. Set up the walls for
   the maze by clicking on their positions on the big canvas. To save a maze, insert
   a name in the input box next to the Save Maze button, then click on the Save Maze
