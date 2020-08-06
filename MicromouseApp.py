@@ -9,7 +9,7 @@
 # ----------------------------------------------------------------------------
 """
 from tkinter import Tk, Button, Canvas, Checkbutton, IntVar, StringVar,\
-    OptionMenu, Label, PhotoImage, filedialog, Entry, messagebox, Frame
+    OptionMenu, Label, PhotoImage, filedialog, Entry, messagebox, Frame, Scale
 import sys
 sys.path.append("./algorithms")
 from CellMod import Cell
@@ -113,7 +113,7 @@ def start_navigation():
         else:
             show_number.config(text="Show numbers")
         if step_input.get():
-            canvas.after(500, draw_maze("virtual"))
+            canvas.after(speed_slider.get(), draw_maze("virtual"))
     # set buttons back to active
     generate_button.config(state="normal")
     algorithm_menu.config(state="normal")
@@ -222,7 +222,7 @@ def custom_maze_mode():
         # set everything else back to normal after clicking "Done!"
         canvas.unbind("<Button-1>")
         algorithm_frame.grid(row=0, column=1, columnspan=2)
-        navigation_frame.grid(row=5, column=1, columnspan=2, rowspan=3)
+        navigation_frame.grid(row=5, column=1, columnspan=2, rowspan=4)
         rollover_generated.grid_forget()
         clear_button.grid_forget()
         retrieve_button.grid_forget()
@@ -467,8 +467,12 @@ window.title("Micromouse Algorithm Demonstrator")
 # Add the canvases
 canvas = Canvas(window, width=805, height=805, background=BLACK)
 canvas.grid(row=0, column=0, rowspan=16)
-side_canvas = Canvas(window, width=320, height=320, background=BLACK)
-side_canvas.grid(row=10, column=1, rowspan=6, columnspan=2, padx=25)
+side_frame = Frame(window)
+side_frame.grid(row=10, column=1, rowspan=7, columnspan=2, padx=25)
+side_label = Label(side_frame, text="Displaying custom maze...", font=("arial", 10, "italic"))
+side_label.grid(row=0, column=0)
+side_canvas = Canvas(side_frame, width=320, height=320, background=BLACK)
+side_canvas.grid(row=1, column=0)
 
 # Add the algorithm menu
 algorithm_frame = Frame(window)
@@ -484,7 +488,7 @@ algorithm_menu.grid(row=0, column=1, ipadx=5, ipady=5)
 
 # Add frame for displaying navigation buttons
 navigation_frame = Frame(window)
-navigation_frame.grid(row=5, column=1, columnspan=2, rowspan=3)
+navigation_frame.grid(row=5, column=1, columnspan=2, rowspan=4)
 
 # Add options for maze displaying
 number_input = IntVar()
@@ -510,8 +514,11 @@ rollover_custom = Button(navigation_frame, text="Rollover Custom", background=LI
     border=0, cursor="hand2", activebackground=GREY, font=("arial", 13, "bold"),
     command=get_custom_maze)
 rollover_custom.grid(row=2, column=0, columnspan=2, ipadx=5, ipady=5)
-side_label = Label(window, text="Displaying custom maze...", font=("arial", 10, "italic"))
-side_label.grid(row=9, column=1, columnspan=2)
+speed_label = Label(navigation_frame, text="\nMovement Delay:", font=("arial", 13, "italic", "bold"))
+speed_label.grid(row=3, column=0)
+speed_slider = Scale(navigation_frame, from_=1, to=1000, length=180, orient="horizontal")
+speed_slider.set(500)
+speed_slider.grid(row=3, column=1)
 
 # Add buttons for custom mode
 custom_frame = Frame(window)
