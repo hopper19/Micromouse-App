@@ -10,8 +10,9 @@
 """
 from tkinter import Tk, Button, Canvas, Checkbutton, IntVar, StringVar,\
     OptionMenu, Label, PhotoImage, filedialog, Entry, messagebox, Frame, Scale
-import sys
-sys.path.append("./algorithms")
+from time import time
+from sys import path
+path.append("./algorithms")
 from CellMod import Cell
 from os import listdir
 from os.path import isfile, join
@@ -113,7 +114,10 @@ def start_navigation():
         else:
             show_number.config(text="Show numbers")
         if step_input.get():
-            canvas.after(speed_slider.get(), draw_maze("virtual"))
+            draw_maze("virtual")
+            past_time = time() * 1000
+            while (time() * 1000 - past_time) < speed_slider.get():
+                speed_slider.update()  # make slide work smoother
     # set buttons back to active
     generate_button.config(state="normal")
     algorithm_menu.config(state="normal")
@@ -134,6 +138,8 @@ def generate_maze():
     if start_button.cget("text") == "Unsolvable":
     # reactivate the start button after a new maze is generated
         start_button.config(text="Start Navigation", state="normal")
+    side_label.config(text="Displaying custom maze...")
+    draw_side("custom")
     maze_create()
     draw_maze("real")
 
@@ -164,9 +170,9 @@ def save_maze():
         maze_file.close()
         if "pearson" in input_box.get().lower():
             scranton_prep = PhotoImage(file="images/SP.png")
-            side_canvas.create_image(163, 163, image=scranton_prep)
+            prank = side_canvas.create_image(163, 163, image=scranton_prep)
             side_canvas.update()
-            side_canvas.after(120)
+            side_canvas.after(120, side_canvas.delete("prank"))
 
 
 def retrieve_maze():
@@ -314,7 +320,6 @@ def draw_maze(maze):
                             fill=WHITE, font=("arial", 12, "bold"))
     if not number_input.get() and maze == "virtual":
     # mark the travelled path, diamond for the current position
-        diamond = PhotoImage(file="images/diamond.png")
         for i in range(16):
             for j in range(16):
                 if cell(i, j).checked:
@@ -322,7 +327,6 @@ def draw_maze(maze):
                         fill=YELLOW, font=("arial", 12, "bold"))
                 if (i, j) == cur_pos():
                     canvas.create_image(i*50 + 31, 781 - j*50, image=diamond)
-    canvas.update()
 
 
 def draw_custom_maze():
@@ -463,6 +467,8 @@ window = Tk()
 window.iconbitmap("images/mouse.ico")
 window.state("zoomed")
 window.title("Micromouse Algorithm Demonstrator")
+# initilize this image here so it doesn't get garbage-collected
+diamond = PhotoImage(file="images/diamond.png")
 
 # Add the canvases
 canvas = Canvas(window, width=805, height=805, background=BLACK)
