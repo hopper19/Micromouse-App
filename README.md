@@ -21,7 +21,7 @@ Use RandomeGuessing.py for reference on how to use the available modules. For mo
   a name in the input box next to the Save Maze button, then click on the Save Maze
   button.
 
-
+<div>Icons made by <a href="http://www.freepik.com/" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
 * Sample algorithms & application programmed by Cuong Nguyen, '23
 * Modified floodfill algorithm developed by Prof. George Law, California State
     University, Northridge
