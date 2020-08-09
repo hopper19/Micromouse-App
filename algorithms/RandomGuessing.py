@@ -1,6 +1,6 @@
 """
 # ----------------------------------------------------------------------------
-#     Name: BlankAlgorithm.py
+#     Name: RandomGuessing.py
 #     Purpose: Algorithm that takes a random choice out of all possible paths.
 #
 #     IMPORTANT: To move the robot, just change the coordinates.
