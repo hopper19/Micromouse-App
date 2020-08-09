@@ -7,7 +7,7 @@
 #
 #     Author: CUONG NGUYEN
 #
-#     Last Modified: 8/4/2020
+#     Last Modified: 8/8/2020
 # ----------------------------------------------------------------------------
 """
 from MazeMod import ParentMaze
@@ -46,22 +46,18 @@ def sensor_print():
 
 
 def cur_pos():
-    """ Return the current position of the mouse """
+    """ Return the current position of the mouse. Generally no need to modify """
     return x, y
 
 
-# record current position
-x, y = 0, 0
-# prevent going backward without being at a corner
-previous_choice = ""
+x, y = 0, 0  # record current position
+previous_choice = ""  # prevent going backward without being at a corner
 
 
-def atCenter():
-    """ Determine the robot has reached the center cells """
+def at_center():
+    """ Determine if the robot has reached the center cells """
     global x, y
-    if 9 > x > 6 and 9 > y > 6:
-        return True
-    return False
+    return 9 > x > 6 and 9 > y > 6
 
 
 def reset():
@@ -76,7 +72,7 @@ def run_algorithm():
     """ The algorithm which is to be iterated until the center is reached
     Return "done" if the center is reached, return "not done" otherwise """
     global x, y, previous_choice
-    if atCenter():
+    if at_center():
         return "done"
     choices = []
     if not sensor_cell(x, y).north_wall:
