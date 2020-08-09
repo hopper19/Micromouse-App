@@ -1,6 +1,6 @@
 In the words of Guido van Rossum (founder of Python):
 > Code is read much more often than it is written
-
+---
 # **Introduction**
 *   Micromouse is a robot whose ability is navigating autonomously through a maze without user input.
 *   This program allows the user to write and test their algorithms without the need of a physical micromouse.
@@ -8,12 +8,14 @@ In the words of Guido van Rossum (founder of Python):
 
 # **User Guide**
 
-##  I.   Movement
+###  I.   Movement
 *   "Movement" in this app is simply a change of coordinates.
 *   IMPORTANT: This app does NOT simulate physical movements, only the algorithm. I cannot stress this enough. If you ever wonder whether this app imitates certain movements of the real bot, it probably doesn't.
 
-##  II.  Algorithm
-### Below are all available classes and functions
+###  II.  Algorithm
+
+Below are all available classes and functions
+
     ```
     class Cell:
     " Class that represents a single cell "
@@ -123,12 +125,35 @@ In the words of Guido van Rossum (founder of Python):
     *   `x, y` are used to store the current position of the robot in the maze. `at_center()` determines whether the bot has reached the center cells, meaning the algorithm has finished.
     *   `reset()` resets everything back as if the bot has just been put down at (0, 0). This function is used by the app to reset the mouse before starting another navigation.
     *   `run_algorithm()` makes the mouse move "one step" (one step of the algorithm, not necessarily exactly one coordinate/cell). First, `run_algorithm()` checks if the bot has reached the center by returning `"done"`so it stops navigating. Next, the mouse checks the surrounding walls, and add the open paths to `choices`. Then, the mouse removes the path that is supposedly at the back of the mouse by checking its `previous_choice`. *NOTE: this is not needed in a real bot, because the bot literally doesn't have a sensor in the back to check if that path is open. And users can just not use the moving backward function.* Then, `random.choice(choices)` picks a random option out of `choices`. Then, it changes the coordinate according to the selection. Add 1 to `y` if selected `path` is north, and likewise. Then, `cell(x, y).set_checked(True)` sets this new position as being checked. Make sure to return `"not done"` at the end of this `run_algorithm()` function.
+    *   There are other properties of a cell too such as `step`, `int_var`, and `bool_var`. Use them as you see fit.
+    * To change the algorithm for navigation, click on the dropdown menu at the top right of the window next to the text *Select your algorithm* and select your desired one. The default selection is ModifiedFloodFill.py
 
+###  II.  Large Maze (big canvas)
+*   Display the newly generated mazes.
+*   During the mouse's navigation, display everything that the mouse knows about the maze.
+*   While in Custom Mode, users can create their maze by clicking on the dashed lines on this big canvas.
 
-##  II.  Large Maze (big canvas)
-##  III. Small Maze (small canvas)
-*   Write your own algorithms by following the sample script BlankAlgorithm.py and the sample algorithms,  ModifiedFloodFill.py. Place your algorithm in the "algorithms" folder.
-*   Make your custom maze by clicking the Custom Mode button. Set up the walls for the maze by clicking on their positions on the big canvas. To save a maze, insert a name in the input box next to the Save Maze button, then click on the Save Maze button.
+###  III. Small Maze (small canvas)
+*   There is a small italic text above this small canvas that states which maze the small canvas is displaying.
+*   While in normal mode, display what would be on the big canvas if users go into custom mode. In other words, it displays the custom maze.
+*   While in custom mode, display what would be on the big canvas if users go into normal mode. In other words, it displays the generated maze.
+*   During the mouse's navigation, it displays the whole maze which the mouse is traversing in. Not important to the mouse, this is only for user's reference.
+
+###  IV. Navigation Options
+*   Click on Start Navigation to run the selected algorithm on the maze currently being displayed on the big canvas.
+*   If the Show numbers box is checked, the navigation will display the `step` property of each cell, with the traversed cells being colored yellow. If not, "x" letters will be marked along the traversed path, with the current position being marked with a diamond shape.
+*   If the Show individual steps box is checked, the app will display each movement of the mouse. Otherwise, it will simply display the final result.
+*   The Generate New Maze button will generate a new random maze.
+*   To transfer the maze from custom mode into normal mode, click on Rollover Custom.
+*   Use the Movement Delay slider to speed up or slow down the navigation speed.
+
+###  V. Custom Mode Options
+*   Enter the Custom Mode by clicking the Custom Mode button.
+*   Set up the walls for the maze by clicking on their positions on the big canvas. Sometimes, the app will ignore your click, if the cursor's position is too close to two different walls simultaneously or if the cursor's position is too far from a wall.
+*   To save a maze, insert a name in the input box next to the Save Maze button, then click on the Save Maze button.
+*   To open a saved maze, click on the Retrieve Maze button. It will open a file dialog, then choose the maze that you want. Enable the Preview Pane in the file dialog if you're not sure which name you saved the maze under.
+*   Users can also transfer the generated maze from normal mode over by clicking on Rollover Generated.
+*   IMPORTANT: NEVER open these maze files outside of the app to edit them. You can overwrite these files from within the app. FYI, the maze you see on the preview pane, or when you open these files is of no importance to the app. That's for user's reference. What's important is the long line of characters at the bottom of the files.
 
 # **Credits**
 *   Sample algorithms & application programmed by Cuong Nguyen, '23, University of Scranton
@@ -146,4 +171,7 @@ In the words of Guido van Rossum (founder of Python):
 *   Micromouse App 4.3 7-11-2020: Restructured and improved custom maze
 *   Micromouse App 4.4 7-12-2020: Improved custom maze
 *   Micromouse App 5.0 8-4-2020: End of Summer 2020 pre-release final version
-*   Micromosue App 5.1 8-8-2002: End of Summer 2020 final version
+*   Micromosue App 5.1 8-8-2020: End of Summer 2020 final version
+
+# **Contact**
+Feedback and feature requests are always welcomed. Please direct them to cuong.nguyen@scranton.edu
