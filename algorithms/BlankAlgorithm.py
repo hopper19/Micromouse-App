@@ -51,8 +51,7 @@ def cur_pos():
     return x, y
 
 
-# record current position
-x, y = 0, 0
+x, y = 0, 0  # record current position
 
 
 def at_center():
