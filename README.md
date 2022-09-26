@@ -1,6 +1,3 @@
-In the words of Guido van Rossum (founder of Python):
-> Code is read much more often than it is written
-
 # **Introduction**
 *   Micromouse is a robot whose ability is navigating autonomously through a maze without user input.
 *   This program allows the user to write and test their algorithms without the need of a physical micromouse.
